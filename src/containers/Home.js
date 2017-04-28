@@ -53,7 +53,7 @@ class Home extends React.Component {
           }
         };
         
-        // DO THe INITIAL LOADING
+        // DO THE INITIAL LOADING
         this.props.memoListRequest(true, undefined, undefined, this.props.username, this.props.token).then(
             () => {
                 // LOAD MEMO UNTIL SCROLLABLE
@@ -313,7 +313,7 @@ class Home extends React.Component {
                 {this.props.memoData.length === 0 && this.state.initiallyLoaded ? emptyView : undefined}
             </div>
         );
-
+        
         return (
             <div className="wrapper">
                 {typeof this.props.username !== "undefined" ? wallHeader : undefined}

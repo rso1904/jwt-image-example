@@ -20,8 +20,8 @@ class Login extends React.Component {
                         username: id
                     };
                     
-                    //document.cookie = 'key=' + btoa(JSON.stringify(loginData));
-               /*     document.cookie = 'key=' + btoa(JSON.stringify(loginData));
+                    document.cookie = 'key=' + btoa(JSON.stringify(loginData));
+               /*    document.cookie = 'key=' + btoa(JSON.stringify(loginData));
                     document.cookie = 'token=' + btoa(this.props.token);
                     document.cookie = btoa("httpOnly"); */
             //        localStorage.setItem("token",this.props.token);

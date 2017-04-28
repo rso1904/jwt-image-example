@@ -41,6 +41,14 @@ class Header extends React.Component {
             </li>
         );
 
+        const imageButton = (
+            <li>
+                <Link to="/upload">
+                    <i className="material-icons">picture_in_picture</i>
+                </Link>
+            </li>
+        )
+
 
         return (
             <div>
@@ -50,6 +58,10 @@ class Header extends React.Component {
 
                         <ul>
                             <li><a onClick={this.toggleSearch}><i className="material-icons"> search</i></a></li>
+                        </ul>
+
+                        <ul>
+                            <li>{imageButton}</li>
                         </ul>
 
                         <div className="right">

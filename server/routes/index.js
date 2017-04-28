@@ -1,6 +1,7 @@
 import express from 'express';
 import account from './account';
-import memo from './memo'
+import memo from './memo';
+import upload from './upload';
 import authMiddleware from '../../middlewares/auth';
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.use('/*', (req, res, next) => {
 router.use('/account', account);
 router.use('/memo', authMiddleware);
 router.use('/memo', memo);
+router.use('/upload', upload);
 
 export default router;
