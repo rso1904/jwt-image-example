@@ -7,7 +7,6 @@ class ImageList extends React.Component {
         //console.log(this.props.images[0]);
         const mapToComponents = (images) => {
             return images.map((image, i) => {
-                //console.log(image.img.data);
                 return (<Image
                             onSubmit={this.props.onSubmit}
                             key={i}
@@ -17,9 +16,11 @@ class ImageList extends React.Component {
         };
 
         return (
+          /* <Image onSubmit={this.props.onSubmit}/> */
+             
             <div>
                 {mapToComponents(this.props.images)}
-            </div>
+            </div> 
         );
     }
 }

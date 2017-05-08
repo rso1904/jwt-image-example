@@ -4,88 +4,52 @@ class Image extends React.Component {
 
     constructor(props) {
         super(props);
-        
-        var base64 = btoa(
-                            new Uint8Array(this.props.imageData.data.data)
-                            .reduce((data, byte) => data + String.fromCharCode(byte), '')
-        );
-        
+
         this.state = {
-            data: base64,
-            contentType: props.imageData.contentType
+            file: '',
+            imagePreviewUrl: this.props.imageData.convert
         };
-
-        this.handleImageChange = this.handleImageChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        
-        this.props.onSubmit(this.state);
-    }
-
-    handleImageChange(e) {
-        e.preventDefault();
-
-        let reader = new FileReader();
-        let file = e.target.files[0];
-        /*
-        reader.onloadend = () => {
-            this.setState({
-                file: file,
-                imageUrl: reader.result
-            });
-        }
-*/
-       reader.readAsDataURL(file);
     }
 
     render() {
-        let imageUrl =  this.state.data;
+        let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
+
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl}/>);
+        } 
         
-        var blob = new Blob(imageUrl);
-        console.log(blob);
-        window.open(window.URL.createObjectURL(blob),'Name','resizable=1');
-        if (imageUrl) {
-            $imagePreview = (<img src={blob} />);
-        }
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="file-field input-field">
-                        <div className="btn">
-                            <span>File</span>
-                            <input type="file" onChange={this.handleImageChange} />
+             <div className="row">
+                <div className="col s12 m7">
+                    <div className="card">
+                        <div className="card-image">
+                            {$imagePreview}
+                            <span className="card-title">Card Title</span>
                         </div>
-                        <div className="file-path-wrapper">
-                            <input className="file-path validate" type="text" placeholder="Upload one or more files"/>
+                        <div className="card-content">
+                            <p>Instagram</p>
+                        </div>
+                        <div className="card-action">
+                            <a href="/upload"><i className="material-icons">present_to_all</i></a>
                         </div>
                     </div>
-                     <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleSubmit}>Submit
-                        <i className="material-icons right">send</i>
-                    </button>
-                </form>
-                {$imagePreview}
+                </div>
             </div>
         );
     }
 }
 
 Image.propTypes = {
-    file: React.PropTypes.string,
-    imageUrl: React.PropTypes.object,
     onSubmit: React.PropTypes.func,
     imageData: React.PropTypes.object
 };
 
 Image.defaultProps = {
-    file: 'File',
-    imageUrl: {},
     onSubmit: (imageFile) => {
         console.error("submit function isn't defined")
-    }
+    },
+    imageData: {}
 };
 
 export default Image;

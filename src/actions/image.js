@@ -45,10 +45,7 @@ export function imageUploadRequest(imageFile) {
     return (dispatch) => {
         dispatch(imageUpload())
 
-        //let imageFormData = new FormData();
-
-        //imageFormData.append('imageFile', imageFile);
-        let imageUrl = imageFile.imageUrl;
+        let imageUrl = imageFile;
         
         return axios.post('/api/upload', { imageUrl })
                     .then((response) => {

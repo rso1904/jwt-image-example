@@ -6,5 +6,6 @@ import MemoList from './MemoList';
 import Search from './Search';
 import Image from './Image';
 import ImageList from './ImageList';
+import Upload from './Upload';
 
-export { Header, Authentication, Write, Memo, MemoList, Search, Image, ImageList };
+export { Header, Authentication, Write, Memo, MemoList, Search, Image, ImageList, Upload };

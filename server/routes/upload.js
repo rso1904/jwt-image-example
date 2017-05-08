@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
     let image = new Image;
 
     image.img.data = req.body.imageUrl;
-    image.img.contentType = 'image/png';
+    image.img.contentType = 'image/jpeg';
     image.save((err, image) => {
         if (err) throw err;
         console.error('saved img to mongo');
@@ -19,14 +19,12 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    /*
-    Image.findById(image, (err, doc) => {
-        if (err) return next(err);
-        res.contentType(doc.img.contentType);
-        res.send(doc.img.data);
-    });*/
     Image.find().exec((err, images) => {
         if (err) throw err;
+        images.map((image, i) => {
+            image.img.convert = image.img.data.toString('utf8');
+        });
+
         return res.json(images);
     });
 });

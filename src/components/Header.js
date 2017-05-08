@@ -43,8 +43,16 @@ class Header extends React.Component {
 
         const imageButton = (
             <li>
-                <Link to="/upload">
+                <Link to="/image">
                     <i className="material-icons">picture_in_picture</i>
+                </Link>
+            </li>
+        )
+
+        const uploadButton = (
+            <li>
+                <Link to="/upload">
+                    <i className="material-icons">present_to_all</i>
                 </Link>
             </li>
         )
@@ -62,6 +70,10 @@ class Header extends React.Component {
 
                         <ul>
                             <li>{imageButton}</li>
+                        </ul>
+
+                        <ul>
+                            <li>{uploadButton}</li>
                         </ul>
 
                         <div className="right">
