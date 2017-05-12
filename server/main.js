@@ -29,7 +29,8 @@ app.use(session({
 })); */
 
 app.use(morgan('dev'));
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 app.set('jwt-secret', config.secret)
 
