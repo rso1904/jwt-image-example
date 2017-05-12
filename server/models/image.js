@@ -6,7 +6,8 @@ const Image = new Schema({
     img : {
         data: Buffer,
         contentType: String,
-        convert: String 
+        convert: String,
+        contents: String 
     }
 });
 

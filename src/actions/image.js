@@ -44,9 +44,9 @@ export function imageListFailure() {
 export function imageUploadRequest(imageFile) {
     return (dispatch) => {
         dispatch(imageUpload())
-
-        let imageUrl = imageFile;
         
+        let imageUrl = imageFile;
+        console.log(imageUrl);
         return axios.post('/api/upload', { imageUrl })
                     .then((response) => {
                         dispatch(imageUploadSuccess());

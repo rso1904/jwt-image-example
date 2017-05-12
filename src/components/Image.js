@@ -14,27 +14,29 @@ class Image extends React.Component {
     render() {
         let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
-
+        console.log(this.props.imageData.contents);
         if (imagePreviewUrl) {
             $imagePreview = (<img src={imagePreviewUrl}/>);
         } 
         
         return (
+            <div className="container image">
              <div className="row">
                 <div className="col s12 m7">
                     <div className="card">
                         <div className="card-image">
                             {$imagePreview}
-                            <span className="card-title">Card Title</span>
+                            <span className="card-title"></span>
                         </div>
                         <div className="card-content">
-                            <p>Instagram</p>
+                            <p>{this.props.imageData.contents}</p>
                         </div>
                         <div className="card-action">
                             <a href="/upload"><i className="material-icons">present_to_all</i></a>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         );
     }

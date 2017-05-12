@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Write, MemoList } from 'components';
+import { ImageWall } from 'containers';
 import {
     memoPostRequest,
     memoListRequest,
@@ -313,7 +314,7 @@ class Home extends React.Component {
                 {this.props.memoData.length === 0 && this.state.initiallyLoaded ? emptyView : undefined}
             </div>
         );
-        
+        /*
         return (
             <div className="wrapper">
                 {typeof this.props.username !== "undefined" ? wallHeader : undefined}
@@ -324,6 +325,12 @@ class Home extends React.Component {
                     onRemove={this.handleRemove}
                     onStar={this.handleStar}
                 />
+            </div>
+        ); */
+        return (
+            <div className="wrapper">
+                {typeof this.props.username !== "undefined" ? wallHeader : undefined}
+                <ImageWall />
             </div>
         );
     }

@@ -7,17 +7,19 @@ class Upload extends React.Component {
 
         this.state = {
             file: '',
-            imagePreviewUrl: ''
+            imagePreviewUrl: '',
+            contents: ''
         }; 
 
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault();
         
-        this.props.onSubmit(this.state.imagePreviewUrl);
+        this.props.onSubmit(this.state);
     }
 
     handleImageChange(e) {
@@ -25,7 +27,7 @@ class Upload extends React.Component {
 
         let reader = new FileReader();
         let file = e.target.files[0];
-        //console.log(reader.result);
+        
         reader.onloadend = () => {
             this.setState({
                 file: file,
@@ -34,6 +36,12 @@ class Upload extends React.Component {
         }
 
        reader.readAsDataURL(file);
+    }
+
+     handleChange(e) {
+        this.setState({
+            contents: e.target.value
+        });
     }
 
     render() {
@@ -60,6 +68,14 @@ class Upload extends React.Component {
                      <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleSubmit}>Submit
                         <i className="material-icons right">send</i>
                     </button>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <textarea id="textarea1" 
+                                className="materialize-textarea" 
+                                onChange={this.handleChange}></textarea>
+                            <label htmlfor="textarea1">Textarea</label>
+                        </div>
+                    </div>
                 </form>
                 {$imagePreview}
             </div>
@@ -67,11 +83,11 @@ class Upload extends React.Component {
     }
 }
 
-Image.propTypes = {
+Upload.propTypes = {
     onSubmit: React.PropTypes.func
 };
 
-Image.defaultProps = {
+Upload.defaultProps = {
     onSubmit: (imageFile) => {
         console.error("submit function isn't defined")
     }
