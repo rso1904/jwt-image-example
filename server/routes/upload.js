@@ -8,9 +8,8 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     let image = new Image;
-    console.log(req.body.imageUrl.contents);
+
     image.img.data = req.body.imageUrl.imagePreviewUrl;
-    image.img.contentType = 'image/jpeg';
     image.img.contents = req.body.imageUrl.contents;
     image.save((err, image) => {
         if (err) throw err;

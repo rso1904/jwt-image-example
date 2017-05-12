@@ -46,7 +46,7 @@ export function imageUploadRequest(imageFile) {
         dispatch(imageUpload())
         
         let imageUrl = imageFile;
-        console.log(imageUrl);
+
         return axios.post('/api/upload', { imageUrl })
                     .then((response) => {
                         dispatch(imageUploadSuccess());

@@ -14,7 +14,7 @@ class Image extends React.Component {
     render() {
         let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
-        console.log(this.props.imageData.contents);
+        
         if (imagePreviewUrl) {
             $imagePreview = (<img src={imagePreviewUrl}/>);
         } 
