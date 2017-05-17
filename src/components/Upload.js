@@ -9,7 +9,7 @@ class Upload extends React.Component {
             file: '',
             imagePreviewUrl: '',
             contents: '',
-            username: this.props.currentUser
+            writer: this.props.currentUser
         }; 
         
         this.handleImageChange = this.handleImageChange.bind(this);
