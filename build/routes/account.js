@@ -12,6 +12,10 @@ var _account = require('../models/account');
 
 var _account2 = _interopRequireDefault(_account);
 
+var _jsonwebtoken = require('jsonwebtoken');
+
+var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
@@ -88,6 +92,8 @@ router.post('/signin', function (req, res) {
 
     // FIND THE USER BY USERNAME
     _account2.default.findOne({ username: req.body.username }, function (err, account) {
+        var secret = req.app.get('jwt-secret');
+
         if (err) throw err;
 
         // CHECK ACCOUNT EXISTANCY
@@ -106,16 +112,32 @@ router.post('/signin', function (req, res) {
             });
         }
 
+        var p = new Promise(function (resolve, reject) {
+            _jsonwebtoken2.default.sign({
+                username: req.body.username
+            }, secret, {
+                expiresIn: '7d',
+                issuer: 'velopert.com',
+                subject: 'userInfo'
+            }, function (err, token) {
+                if (err) reject(err);
+                resolve(token);
+            });
+        });
+
         // ALTER SESSION
-        var session = req.session;
-        session.loginInfo = {
-            _id: account._id,
-            username: account.username
-        };
+        /*    let session = req.session;
+            session.loginInfo = {
+                _id: account._id,
+                username: account.username
+            };*/
 
         // RETURN SUCCESS
-        return res.json({
-            success: true
+        p.then(function (token) {
+            return res.json({
+                success: true,
+                token: token
+            });
         });
     });
 
@@ -141,9 +163,7 @@ router.get('/getinfo', function (req, res) {
 */
 
 router.post('/logout', function (req, res) {
-    req.session.destroy(function (err) {
-        if (err) throw err;
-    });
+    //req.session.destroy(err => { if (err) throw err; });
     return res.json({ success: true });
 });
 

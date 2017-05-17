@@ -19,10 +19,11 @@ const store = createStore(reducers, applyMiddleware(thunk));
 
 const rootElement = document.getElementById('root');
 
+
 let token = localStorage.getItem('token');
-let decode = jwtDecode(token);
 
 if (token !== null) {
+    let decode = jwtDecode(token);
     store.dispatch(loginSuccess(decode.username, token));
 }
 

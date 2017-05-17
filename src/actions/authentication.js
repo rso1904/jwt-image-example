@@ -134,6 +134,7 @@ export function logoutRequest() {
 }
 
 export function logout() {
+    localStorage.removeItem("token");
     return {
         type: AUTH_LOGOUT
     };

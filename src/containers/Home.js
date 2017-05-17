@@ -330,7 +330,7 @@ class Home extends React.Component {
         return (
             <div className="wrapper">
                 {typeof this.props.username !== "undefined" ? wallHeader : undefined}
-                <ImageWall />
+                {this.props.isLoggedIn ? <ImageWall /> : undefined }
             </div>
         );
     }

@@ -16,6 +16,10 @@ var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
+var _jwtDecode = require('jwt-decode');
+
+var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
@@ -30,12 +34,12 @@ var router = _express2.default.Router();
 // WRITE MEMO
 router.post('/', function (req, res) {
     // CHECK LOGIN STATUS
-    if (typeof req.session.loginInfo === 'undefined') {
-        return res.status(403).json({
-            error: "NOT LOGGED IN",
-            code: 1
-        });
-    }
+    /*    if (typeof req.session.loginInfo === 'undefined') {
+            return res.status(403).json({
+                error: "NOT LOGGED IN",
+                code: 1
+            });
+        } */
 
     // CHECK CONTENTS VALID
     if (typeof req.body.contents !== 'string') {
@@ -54,7 +58,8 @@ router.post('/', function (req, res) {
 
     // CREATE NEW MEMO
     var memo = new _memo2.default({
-        writer: req.session.loginInfo.username,
+        //writer: req.session.loginInfo.username,
+        writer: (0, _jwtDecode2.default)(req.headers['x-access-token']).username,
         contents: req.body.contents
     });
 

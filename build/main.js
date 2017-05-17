@@ -36,12 +36,15 @@ var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
+var _config2 = require('../config');
+
+var _config3 = _interopRequireDefault(_config2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// HTTP REQUEST BODY
-var devPort = 4000;
 /* setup reuters & static directory */
 // PARSE HTML BODY
+var devPort = 4000; // HTTP REQUEST BODY
 
 
 var app = (0, _express2.default)();
@@ -55,15 +58,18 @@ db.once('open', function () {
 });
 // mongoose.connect('mongodb://username:password@host:port/database=');
 _mongoose2.default.connect('mongodb://localhost/codelab');
-
-app.use((0, _expressSession2.default)({
+/*
+app.use(session({
     secret: 'CodeLab1$1$234',
     resave: false,
     saveUninitialized: true
-}));
+})); */
 
 app.use((0, _morgan2.default)('dev'));
-app.use(_bodyParser2.default.json());
+//app.use(bodyParser.json());
+app.use(_bodyParser2.default.json({ limit: '50mb' }));
+
+app.set('jwt-secret', _config3.default.secret);
 
 app.use('/api', _routes2.default);
 
@@ -90,9 +96,9 @@ app.listen(port, function () {
 
 if (process.env.NODE_ENV == 'development') {
     console.log('Server is running on development mode');
-    var config = require('../webpack.dev.config');
-    var compiler = (0, _webpack2.default)(config);
-    var devServer = new _webpackDevServer2.default(compiler, config.devServer);
+    var _config = require('../webpack.dev.config');
+    var compiler = (0, _webpack2.default)(_config);
+    var devServer = new _webpackDevServer2.default(compiler, _config.devServer);
     devServer.listen(devPort, function () {
         console.log('webpack-dev-server is listening on port', devPort);
     });

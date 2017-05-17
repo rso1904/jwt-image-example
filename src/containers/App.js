@@ -36,7 +36,6 @@ class App extends React.Component {
         // check whether this cookies is valid or not
         this.props.getStatusRequest().then(
             () => {
-                console.log(this.props.status);
                 // if session is not valid
                 if (!this.props.status.valid) {
                     // logout the session

@@ -6,14 +6,16 @@ import { imageUploadRequest } from 'actions/image';
 class UploadWall extends React.Component {
     render() {
         return (
-            <Upload onSubmit={this.props.imageUploadRequest}></Upload>
+            <Upload onSubmit={this.props.imageUploadRequest}
+                    currentUser={this.props.currentUser}></Upload>
         );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        status: state.image.status
+        status: state.image.status,
+        currentUser: state.authentication.status.currentUser
     };
 };
 

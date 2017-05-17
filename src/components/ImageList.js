@@ -16,8 +16,6 @@ class ImageList extends React.Component {
         };
 
         return (
-          /* <Image onSubmit={this.props.onSubmit}/> */
-             
             <div>
                 {mapToComponents(this.props.images)}
             </div> 

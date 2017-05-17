@@ -29,6 +29,7 @@ class Image extends React.Component {
                             <span className="card-title"></span>
                         </div>
                         <div className="card-content">
+                            <p>{this.props.imageData.writer}</p>
                             <p>{this.props.imageData.contents}</p>
                         </div>
                         <div className="card-action">

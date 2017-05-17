@@ -8,12 +8,13 @@ class Upload extends React.Component {
         this.state = {
             file: '',
             imagePreviewUrl: '',
-            contents: ''
+            contents: '',
+            username: this.props.currentUser
         }; 
-
+        
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);      
     }
 
     handleSubmit(e) {
@@ -84,7 +85,8 @@ class Upload extends React.Component {
 }
 
 Upload.propTypes = {
-    onSubmit: React.PropTypes.func
+    onSubmit: React.PropTypes.func,
+    currentUser: React.PropTypes.string
 };
 
 Upload.defaultProps = {
