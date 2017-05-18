@@ -18,7 +18,7 @@ export function imageListRequest(writer) {
             url = `${url}/${writer}`;
         }
 
-         return axios.get('/api/upload')
+         return axios.get(url)
                      .then((response) => {
                          dispatch(imageListSuccess(response.data));
                      }).catch((error) => {

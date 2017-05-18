@@ -31,8 +31,9 @@ router.get('/', (req, res) => {
 });
 
 // select images by ID
-router.get('/:username', (req, res) => {
-    Memo.find({ writer: req.params.username })
+router.get('/:writer', (req, res) => {
+    console.log(req.params.writer);
+    Image.find({ writer: req.params.writer })
         .sort({ "_id": -1 })
         .limit(6)
         .exec((err, memos) => {
