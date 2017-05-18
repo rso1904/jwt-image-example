@@ -21,23 +21,23 @@ class Image extends React.Component {
         
         return (
             <div className="container image">
-             <div className="row">
-                <div className="col s12 m7">
-                    <div className="card">
-                        <div className="card-image">
-                            {$imagePreview}
-                            <span className="card-title"></span>
-                        </div>
-                        <div className="card-content">
-                            <p>{this.props.imageData.writer}</p>
-                            <p>{this.props.imageData.contents}</p>
-                        </div>
-                        <div className="card-action">
-                            <a href="/upload"><i className="material-icons">present_to_all</i></a>
+                <div className="row">
+                    <div className="col s12 m7">
+                        <div className="card">
+                            <div className="card-image">
+                                {$imagePreview}
+                                <span className="card-title"></span>
+                            </div>
+                            <div className="card-content">
+                                <Link to={`/upload/${this.props.imageData.writer}`} className="username">ID: {this.props.imageData.writer}</Link>
+                                <p>{this.props.imageData.contents}</p>
+                            </div>
+                            <div className="card-action">
+                                <a href="/upload"><i className="material-icons">present_to_all</i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         );
     }

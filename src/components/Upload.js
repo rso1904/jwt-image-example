@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory, Link } from 'react-router';
 
 class Upload extends React.Component {
 
@@ -21,6 +22,7 @@ class Upload extends React.Component {
         e.preventDefault();
         
         this.props.onSubmit(this.state);
+        browserHistory.push('/image');
     }
 
     handleImageChange(e) {

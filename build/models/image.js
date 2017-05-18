@@ -17,7 +17,8 @@ var Image = new Schema({
         data: Buffer,
         contentType: String,
         convert: String,
-        contents: String
+        contents: String,
+        writer: String
     }
 });
 

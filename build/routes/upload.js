@@ -33,6 +33,7 @@ router.post('/', function (req, res) {
 
     image.img.data = req.body.imageUrl.imagePreviewUrl;
     image.img.contents = req.body.imageUrl.contents;
+    image.img.writer = req.body.imageUrl.writer;
     image.save(function (err, image) {
         if (err) throw err;
         console.error('saved img to mongo');

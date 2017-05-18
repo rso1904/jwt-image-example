@@ -8,10 +8,16 @@ import {
 } from './ActionTypes';
 import axios from 'axios';
 
-export function imageListRequest() {
+export function imageListRequest(writer) {
     return (dispatch) => {
         dispatch(imageList());
         
+        let url = '/api/upload';
+
+        if(typeof writer !== "undefined") {
+            url = `${url}/${writer}`;
+        }
+
          return axios.get('/api/upload')
                      .then((response) => {
                          dispatch(imageListSuccess(response.data));
