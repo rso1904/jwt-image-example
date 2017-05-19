@@ -16,7 +16,7 @@ class Image extends React.Component {
 
     getHashtags(contents, isOn) {
         let type = contents.split('#');
-        let hash = '';
+        let hash;
         if (type.length > 1)
             hash = type[1];
         if (isOn === true) {
@@ -59,7 +59,7 @@ class Image extends React.Component {
                             </div>
                             <div className="card-content">
                                 <Link to={`/image/${this.props.imageData.writer}`} className="writer">ID: {this.props.imageData.writer}</Link>
-                                <p>{contents} <Link to={`/image/${hashtags}`} className="hashtags">#{hashtags}</Link></p>
+                                <p>{contents} {typeof hashtags !== "undefined" ? <Link to={`/image/hashtags/${hashtags}`} className="hashtags">#{hashtags}</Link> : undefined}</p>
                             </div>
                             <div className="card-action">
                                 <a href="/upload"><i className="material-icons">present_to_all</i></a>
