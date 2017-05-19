@@ -6,17 +6,30 @@ import {
     imageListRequest } from 'actions/image';
 
 class ImageWall extends React.Component {
-    
     constructor(props) {
         super(props);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.params !== prevProps.params) {
+            this.componentDidMount();
+        }
+    }
+
     componentDidMount() {
-        this.props.imageListRequest().then(
-            () => {
-                 Materialize.toast('loading Success', 2000);
-            }
-        );
+        if (typeof this.props.params !== "undefined") {
+            this.props.imageListRequest(this.props.params.writer).then(
+                () => {
+                    Materialize.toast('loading Success', 2000);
+                }
+            );
+        } else {
+            this.props.imageListRequest().then(
+                () => {
+                    Materialize.toast('loading Success', 2000);
+                }
+            );
+        }
     }
 
     render() {
@@ -39,8 +52,8 @@ const mapDispatchToProps = (dispatch) => {
         imageUploadRequest: (imageFile) => {
             return dispatch(imageUploadRequest(imageFile));
         },
-        imageListRequest: () => {
-            return dispatch(imageListRequest());
+        imageListRequest: (writer) => {
+            return dispatch(imageListRequest(writer));
         }
     };
 };

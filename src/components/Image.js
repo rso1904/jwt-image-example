@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class Image extends React.Component {
 
@@ -9,12 +10,40 @@ class Image extends React.Component {
             file: '',
             imagePreviewUrl: this.props.imageData.convert
         };
+
+        this.getHashtags = this.getHashtags.bind(this);
+    }
+
+    getHashtags(contents, isOn) {
+        let type = contents.split('#');
+        let hash = '';
+        if (type.length > 1)
+            hash = type[1];
+        if (isOn === true) {
+            return hash;
+        } else {
+            return type[0];
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props !== prevProps) {
+            this.componentDidMount();
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            imagePreviewUrl: this.props.imageData.convert
+        });
     }
 
     render() {
         let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
-        
+        let hashtags = this.getHashtags(this.props.imageData.contents, true);
+        let contents = this.getHashtags(this.props.imageData.contents);
+
         if (imagePreviewUrl) {
             $imagePreview = (<img src={imagePreviewUrl}/>);
         } 
@@ -29,8 +58,8 @@ class Image extends React.Component {
                                 <span className="card-title"></span>
                             </div>
                             <div className="card-content">
-                                <Link to={`/upload/${this.props.imageData.writer}`} className="username">ID: {this.props.imageData.writer}</Link>
-                                <p>{this.props.imageData.contents}</p>
+                                <Link to={`/image/${this.props.imageData.writer}`} className="writer">ID: {this.props.imageData.writer}</Link>
+                                <p>{contents} <Link to={`/image/${hashtags}`} className="hashtags">#{hashtags}</Link></p>
                             </div>
                             <div className="card-action">
                                 <a href="/upload"><i className="material-icons">present_to_all</i></a>

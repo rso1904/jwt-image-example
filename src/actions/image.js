@@ -13,11 +13,11 @@ export function imageListRequest(writer) {
         dispatch(imageList());
         
         let url = '/api/upload';
-
+        
         if(typeof writer !== "undefined") {
             url = `${url}/${writer}`;
         }
-
+        console.log(url);
          return axios.get(url)
                      .then((response) => {
                          dispatch(imageListSuccess(response.data));

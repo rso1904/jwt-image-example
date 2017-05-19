@@ -32,13 +32,17 @@ router.get('/', (req, res) => {
 
 // select images by ID
 router.get('/:writer', (req, res) => {
-    console.log(req.params.writer);
-    Image.find({ writer: req.params.writer })
+    Image.find({ "img.writer" : req.params.writer })
         .sort({ "_id": -1 })
         .limit(6)
-        .exec((err, memos) => {
+        .exec((err, images) => {
             if (err) throw err;
-            res.json(memos);
+            
+            images.map((image, i) => {
+                image.img.convert = image.img.data.toString('utf8');
+            });
+
+            res.json(images);
         });
 });
 

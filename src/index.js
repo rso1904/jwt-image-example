@@ -36,7 +36,8 @@ ReactDOM.render(
                 <Route path="login" component={Login} />
                 <Route path="register" component={Register} />
                 <Route path="wall/:username" component={Wall} />
-                <Route path="image/:writer" component={ImageWall} />
+                <Route exact path="/image" component={ImageWall} />
+                <Route exact path="/image/:writer" component={ImageWall} />
                 <Route path="upload" component={UploadWall} />
             </Route>
         </Router>

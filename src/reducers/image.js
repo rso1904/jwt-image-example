@@ -29,7 +29,6 @@ export default function upload(state, action) {
                 status: { $set: 'WAITING'}
             });
         case types.IMAGE_LIST_SUCCESS:
-            //console.log(action.images);
             return update(state, {
                 status: { $set: 'SUCCESS' },
                 images: { $set: action.images }
