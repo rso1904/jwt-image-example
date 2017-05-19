@@ -8,7 +8,7 @@ import {
 } from './ActionTypes';
 import axios from 'axios';
 
-export function imageListRequest(writer) {
+export function imageListRequest(writer, hashtags) {
     return (dispatch) => {
         dispatch(imageList());
         
@@ -16,8 +16,10 @@ export function imageListRequest(writer) {
         
         if(typeof writer !== "undefined") {
             url = `${url}/${writer}`;
+        } else if(typeof hashtags !== "undefined") {
+            url = `${url}/hashtags/${hashtags}`;
         }
-        console.log(url);
+        
          return axios.get(url)
                      .then((response) => {
                          dispatch(imageListSuccess(response.data));

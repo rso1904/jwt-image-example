@@ -10,12 +10,26 @@ class Upload extends React.Component {
             file: '',
             imagePreviewUrl: '',
             contents: '',
-            writer: this.props.currentUser
-        }; 
+            writer: this.props.currentUser,
+            hashtags: []
+        };
         
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);      
+        this.handleChange = this.handleChange.bind(this);  
+        this.getHashtags = this.getHashtags.bind(this);    
+    }
+
+    getHashtags(contents, isOn) {
+        let type = contents.split('#');
+        let hash;
+        if (type.length > 1)
+            hash = type[1];
+        if (isOn === true) {
+            return hash;
+        } else {
+            return type[0];
+        }
     }
 
     handleSubmit(e) {
@@ -42,8 +56,11 @@ class Upload extends React.Component {
     }
 
      handleChange(e) {
+        let hashtags = this.getHashtags(e.target.value, true);
+
         this.setState({
-            contents: e.target.value
+            contents: e.target.value,
+            hashtags: hashtags
         });
     }
 

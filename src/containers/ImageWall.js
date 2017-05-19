@@ -18,11 +18,19 @@ class ImageWall extends React.Component {
 
     componentDidMount() {
         if (typeof this.props.params !== "undefined") {
-            this.props.imageListRequest(this.props.params.writer).then(
-                () => {
-                    Materialize.toast('loading Success', 2000);
-                }
-            );
+            if (typeof this.props.params.writer !== "undefined") {
+                this.props.imageListRequest(this.props.params.writer).then(
+                    () => {
+                        Materialize.toast('loading Success', 2000);
+                    }
+                );
+            } else {
+                this.props.imageListRequest(undefined, this.props.params.hashtags).then(
+                    () => {
+                        Materialize.toast('loading Success', 2000);
+                    }
+                );
+            }
         } else {
             this.props.imageListRequest().then(
                 () => {
