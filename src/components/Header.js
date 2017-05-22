@@ -65,7 +65,7 @@ class Header extends React.Component {
                         <Link to="/" className="brand-logo center">AMPERSAND</Link>
 
                         <ul>
-                            <li><a onClick={this.toggleSearch}><i className="material-icons"> search</i></a></li>
+                            <li><a onClick={this.toggleSearch}><i className="material-icons">search</i></a></li>
                         </ul>
 
                         <ul>
@@ -75,10 +75,18 @@ class Header extends React.Component {
                         <ul>
                             <li>{uploadButton}</li>
                         </ul>
-
                         <div className="right">
                             <ul>
-                                { this.props.isLoggedIn ? logoutButton : loginButton }
+                                <li>{ this.props.isLoggedIn ? logoutButton : loginButton }</li>
+                            </ul>
+                        </div>
+                        <div className="right">
+                            <ul>
+                                <li>
+                                    <Link to="/upload/profile">
+                                        <i className="material-icons">person_pin</i>
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>

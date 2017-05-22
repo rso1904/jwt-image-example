@@ -174,4 +174,32 @@ router.get('/search', (req, res) => {
     res.json([]);
 });
 
+// update profile
+router.put('/update', (req, res) => {
+    console.log(req.body.data);
+    // FIND THE USER BY USERNAME
+    Account.findOne({ username: req.body.data.username }, (err, account) => {
+        if (err) throw err;
+        /*
+        if (typeof req.body.data.password !== "undefined")
+            account.password = account.generateHash(req.body.password);
+        */
+        account.image = req.body.data.imagePreviewUrl
+        // SAVE IN THE DATABASE
+        account.save(err => {
+            if (err) throw err;
+            return res.json({ success: true });
+        });
+    });
+});
+
+router.get('/profile/:username', (req, res) => {
+    console.log(req.body.params.username);
+    Account.findOne({ username: req.body.params.username })
+        .exec((err, account) => {
+            if (err) throw err;
+            res.json(account);
+        });
+});
+
 export default router;

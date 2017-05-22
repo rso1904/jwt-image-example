@@ -8,7 +8,13 @@ import {
     AUTH_GET_STATUS,
     AUTH_GET_STATUS_SUCCESS,
     AUTH_GET_STATUS_FAILURE,
-    AUTH_LOGOUT
+    AUTH_LOGOUT,
+    AUTH_UPDATE,
+    AUTH_UPDATE_SUCCESS,
+    AUTH_UPDATE_FAILURE,
+    AUTH_PROFILE,
+    AUTH_PROFILE_SUCCESS,
+    AUTH_PROFILE_FAILURE
 } from './ActionTypes';
 
 import axios from 'axios';
@@ -139,3 +145,80 @@ export function logout() {
         type: AUTH_LOGOUT
     };
 }
+
+
+/* Profile Update */
+export function updateRequest(data) {
+    return (dispatch) => {
+        // Inform Register API is starting
+        dispatch(update());
+        
+        return axios.put('/api/account/update', { data })
+            .then((response) => {
+                dispatch(registerSuccess());
+            }).catch((error) => {
+                dispatch(registerFailure(error.response.data.code));
+            });
+    };
+}
+
+export function update() {
+    return {
+        type: AUTH_UPDATE
+    };
+}
+
+export function updateSuccess() {
+    return {
+        type: AUTH_UPDATE_SUCCESS
+    };
+}
+
+export function updateFailure(error) {
+    return {
+        type: AUTH_UPDATE_FAILURE,
+        error
+    };
+}
+
+/* GET Profile */
+export function getProfileRequest(username) {
+    return (dispatch) => {
+        // Inform Register API is starting
+        dispatch(getProfile());
+        
+        let url = '/api/account/profile';
+        
+        if(typeof username !== "undefined") {
+            url = `${url}/${username}`;
+        }
+        
+        return axios.get(url)
+            .then((response) => {
+                dispatch(registerSuccess(response.data));
+            }).catch((error) => {
+                dispatch(registerFailure(error.response.data.code));
+            });
+    };
+}
+
+export function getProfile() {
+    return {
+        type: AUTH_PROFILE
+    };
+}
+
+export function getProfileSuccess(account) {
+    return {
+        type: AUTH_PROFILE_SUCCESS,
+        account
+    };
+}
+
+export function getProfileFailure(error) {
+    return {
+        type: AUTH_PROFILE_FAILURE,
+        error
+    };
+}
+

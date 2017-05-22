@@ -14,6 +14,15 @@ const initialState = {
         valid: false,
         isLoggedIn: false,
         currentUser: '',
+    },
+    update: {
+        status: 'INIT',
+        error: -1
+    },
+    profile: {
+        status: 'INIT',
+        info: [],
+        error: -1
     }
 };
 
@@ -91,6 +100,49 @@ export default function authentication(state, action) {
                 status: {
                     isLoggedIn: { $set: false },
                     currentUser: { $set: '' }
+                }
+            });
+        /* UPDATE */
+        case types.AUTH_UPDATE:
+            return update(state, {
+                update: {
+                    status: { $set: 'WAITING' },
+                    error: { $set: -1 }
+                }
+            });
+        case types.AUTH_UPDATE_SUCCESS:
+            return update(state, {
+                update: {
+                    status: { $set: 'SUCCESS' }
+                }
+            });
+        case types.AUTH_UPDATE_FAILURE:
+            return update(state, {
+                update: {
+                    status: { $set: 'FAILURE' },
+                    error: { $set: action.error }
+                }
+            });
+        /* GET PROFILE*/
+        case types.AUTH_PROFILE:
+            return update(state, {
+                profile: {
+                    status: { $set: 'WAITING' },
+                    error: { $set: -1 }
+                }
+            });
+        case types.AUTH_PROFILE_SUCCESS:
+            return update(state, {
+                profile: {
+                    status: { $set: 'SUCCESS' },
+                    info: { $set: action.account }
+                }
+            });
+        case types.AUTH_PROFILE_FAILURE:
+            return update(state, {
+                profile: {
+                    status: { $set: 'FAILURE' },
+                    error: { $set: action.error }
                 }
             });
         default:

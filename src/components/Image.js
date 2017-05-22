@@ -58,7 +58,12 @@ class Image extends React.Component {
                                 <span className="card-title"></span>
                             </div>
                             <div className="card-content">
-                                <Link to={`/image/${this.props.imageData.writer}`} className="writer">ID: {this.props.imageData.writer}</Link>
+                                <Link to={`/image/${this.props.imageData.writer}`} className="writer">
+                                    <div className="chip">
+                                    <img src={imagePreviewUrl} alt="Contact Person"></img>
+                                        {this.props.imageData.writer}
+                                    </div> 
+                                </Link>
                                 <p>{contents} {typeof hashtags !== "undefined" ? <Link to={`/image/hashtags/${hashtags}`} className="hashtags">#{hashtags}</Link> : undefined}</p>
                             </div>
                             <div className="card-action">

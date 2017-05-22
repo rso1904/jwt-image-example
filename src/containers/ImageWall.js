@@ -4,6 +4,7 @@ import { ImageList } from 'components';
 import { 
     imageUploadRequest,
     imageListRequest } from 'actions/image';
+import { getProfileRequest } from 'actions/authentication';
 
 class ImageWall extends React.Component {
     constructor(props) {
@@ -43,6 +44,7 @@ class ImageWall extends React.Component {
     render() {
         return (
             <ImageList onSubmit={this.props.imageUploadRequest}
+                        getProfile={this.props.getProfileRequest}
                         images={this.props.images}/>   
         );
     }
@@ -60,8 +62,11 @@ const mapDispatchToProps = (dispatch) => {
         imageUploadRequest: (imageFile) => {
             return dispatch(imageUploadRequest(imageFile));
         },
-        imageListRequest: (writer) => {
-            return dispatch(imageListRequest(writer));
+        imageListRequest: (writer, hashtags) => {
+            return dispatch(imageListRequest(writer, hashtags));
+        },
+        getProfileRequest: (username) => {
+            return dispatch(getProfileRequest(username));
         }
     };
 };

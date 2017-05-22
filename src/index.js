@@ -39,7 +39,8 @@ ReactDOM.render(
                 <Route exact path="/image" component={ImageWall} />
                 <Route exact path="/image/:writer" component={ImageWall} />
                 <Route exact path="/image/hashtags/:hashtags" component={ImageWall} />
-                <Route path="upload" component={UploadWall} />
+                <Route exact path="upload" component={UploadWall} />
+                <Route exact path="/upload/profile" component={UploadWall} />
             </Route>
         </Router>
     </Provider>, rootElement
