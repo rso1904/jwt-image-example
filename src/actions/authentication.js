@@ -195,9 +195,9 @@ export function getProfileRequest(username) {
         
         return axios.get(url)
             .then((response) => {
-                dispatch(registerSuccess(response.data));
+                dispatch(getProfileSuccess(response.data));
             }).catch((error) => {
-                dispatch(registerFailure(error.response.data.code));
+                dispatch(getProfileFailure(error));
             });
     };
 }

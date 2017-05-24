@@ -21,7 +21,7 @@ class ProFileUpload extends React.Component {
         e.preventDefault();
         
         this.props.onSubmit(this.state);
-        browserHistory.push('/image');
+        //browserHistory.push('/image');
     }
 
     handleImageChange(e) {

@@ -176,7 +176,6 @@ router.get('/search', (req, res) => {
 
 // update profile
 router.put('/update', (req, res) => {
-    console.log(req.body.data);
     // FIND THE USER BY USERNAME
     Account.findOne({ username: req.body.data.username }, (err, account) => {
         if (err) throw err;
@@ -193,12 +192,22 @@ router.put('/update', (req, res) => {
     });
 });
 
-router.get('/profile/:username', (req, res) => {
-    console.log(req.body.params.username);
-    Account.findOne({ username: req.body.params.username })
-        .exec((err, account) => {
+
+router.get('/profile', (req, res) => {
+    
+    Account.findOne({ username: req.params.username })
+        .exec((err, accounts) => {
             if (err) throw err;
-            res.json(account);
+            res.json(accounts);
+        });
+});
+
+router.get('/profile/:username', (req, res) => {
+    
+    Account.findOne({ username: req.params.username })
+        .exec((err, accounts) => {
+            if (err) throw err;
+            res.json(accounts);
         });
 });
 

@@ -21,7 +21,7 @@ const initialState = {
     },
     profile: {
         status: 'INIT',
-        info: [],
+        info: {},
         error: -1
     }
 };

@@ -37,6 +37,19 @@ export default function upload(state, action) {
             return update(state, {
                 status: { $set: 'FAILURE' }
             });
+        case types.IMAGE_DELETE:
+            return update(state, {
+                status: { $set: 'WAITING' }
+            });
+        case types.IMAGE_DELETE_SUCCESS:
+            return update(state, {
+                status: { $set: 'SUCCESS' },
+                images: { $splice: [[action.index, 1]] }
+            });
+        case types.IMAGE_DELETE_FAILURE:
+            return update(state, {
+                status: { $set: 'FAILURE' }
+            });
         default:
             return state;
     }

@@ -1,22 +1,28 @@
 import React from 'react';
 import { Image } from 'components';
+import { connect } from 'react-redux';
 
 class ImageList extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    shouldComponentupdate(nextProps, nextState) {
+        let update = JSON.stringify(this.props) !== JSON.stringify(nextProps);
+        return update;
+    }
 
     render() {
         const mapToComponents = (images) => {
             return images.map((image, i) => {
-                let profile;
-
-                this.props.getProfile(image.img.writer).then(() => {
-                    console.log(this.props.profile);
-                });
-
                 return (<Image
-                            onSubmit={this.props.onSubmit}
-                            key={i}
-                            imageData={image.img}
-                            profile={this.profile}
+                    onSubmit={this.props.onSubmit}
+                    index={i}
+                    imageData={image}
+                    profile={this.props.arrayProfile[image.img.writer]}
+                    onRemove={this.props.onRemove}
+                    currentUser={this.props.currentUser}
                 />);
             });
         };
@@ -24,28 +30,22 @@ class ImageList extends React.Component {
         return (
             <div>
                 {mapToComponents(this.props.images)}
-            </div> 
+            </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        profile: state.authentication.profile.info
-    };
-};
-
 ImageList.propTypes = {
     onSubmit: React.PropTypes.func,
-    images: React.PropTypes.array
+    images: React.PropTypes.array,
+    arrayProfile: React.PropTypes.array,
+    onRemove: React.PropTypes.func,
+    currentUser: React.PropTypes.string
 };
 
 ImageList.defaultProps = {
     onSubmit: (imageFile) => {
         console.error('submit function not defined');
-    },
-    getProfile: (username) => {
-        console.error('getProfile function not defined');
     },
     imageUrl: ''
 };

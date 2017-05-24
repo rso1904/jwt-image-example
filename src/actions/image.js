@@ -4,7 +4,10 @@ import {
     IMAGE_UPLOAD_FAILURE,
     IMAGE_LIST,
     IMAGE_LIST_SUCCESS,
-    IMAGE_LIST_FAILURE
+    IMAGE_LIST_FAILURE,
+    IMAGE_DELETE,
+    IMAGE_DELETE_SUCCESS,
+    IMAGE_DELETE_FAILURE
 } from './ActionTypes';
 import axios from 'axios';
 
@@ -56,11 +59,11 @@ export function imageUploadRequest(imageFile) {
         let imageUrl = imageFile;
 
         return axios.post('/api/upload', { imageUrl })
-                    .then((response) => {
-                        dispatch(imageUploadSuccess());
-                    }).catch((error) => {
-                        dispatch(imageUploadFailure());
-                    });
+            .then((response) => {
+                dispatch(imageUploadSuccess());
+            }).catch((error) => {
+                dispatch(imageUploadFailure());
+            });
 
     };
 }
@@ -80,5 +83,36 @@ export function imageUploadSuccess() {
 export function imageUploadFailure() {
     return {
         type: IMAGE_UPLOAD_FAILURE
+    };
+}
+
+export function imageDeleteRequest(id, index) {
+    return (dispatch) => {
+        dispatch(imageDelete());
+
+        return axios.delete('/api/upload/delete/' + id)
+            .then((response) => {
+                dispatch(imageDeleteSuccess());
+            }).catch((error) => {
+                dispatch(imageDeleteFailure());
+            });
+    };
+}
+
+export function imageDelete() {
+    return {
+        type: IMAGE_DELETE
+    };
+}
+
+export function imageDeleteSuccess() {
+    return {
+        type: IMAGE_DELETE_SUCCESS
+    };
+}
+
+export function imageDeleteFailure() {
+    return {
+        type: IMAGE_DELETE_FAILURE
     };
 }

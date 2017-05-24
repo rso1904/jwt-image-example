@@ -63,4 +63,48 @@ router.get('/hashtags/:hashtags', (req, res) => {
         });
 });
 
+// DELETE IMAGE
+router.delete('/delete/:id', (req, res) => {
+
+    // CEHCK MEMO ID VALIDITY
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        return res.status(400).json({
+            error: "INVALID ID",
+            code: 1
+        });
+    }
+    /*
+    // CHECK LOGIN STATUS
+    if (typeof req.body.loginInfo === 'undefined') {
+        return res.status(403).json({
+            error: "NOT LOGGED IN",
+            code: 2
+        });
+    } */
+
+    // FIND MEMO AND CHECK FOR WRITER
+    Image.findById(req.params.id, (err, image) => {
+        if (err) throw err;
+
+        if (!image) {
+            return res.status(404).json({
+                error: "NO RESOURCE",
+                code: 3
+            });
+        }
+        /*
+        if (image.writer != req.body.loginInfo.username) {
+            return res.status(403).json({
+                error: "PERMISSIOn FAILURE",
+                code: 4
+            });
+        } */
+
+        Image.remove({ _id: req.params.id }, err => {
+            if (err) throw err;
+            res.json({ success: true });
+        });
+    });
+});
+
 export default router;
