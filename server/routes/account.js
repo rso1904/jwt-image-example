@@ -183,7 +183,13 @@ router.put('/update', (req, res) => {
         if (typeof req.body.data.password !== "undefined")
             account.password = account.generateHash(req.body.password);
         */
-        account.image = req.body.data.imagePreviewUrl
+        if (typeof req.body.data.password !== "undefined")
+            account.password = account.generateHash(req.body.data.password);
+        if (typeof req.body.data.email !== "undefined")
+            account.email = req.body.data.email;
+        if (typeof req.body.data.imagePreviewUrl !== "undefined")
+            account.image = req.body.data.imagePreviewUrl;
+        
         // SAVE IN THE DATABASE
         account.save(err => {
             if (err) throw err;

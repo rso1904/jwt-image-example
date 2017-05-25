@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 // Container Components
-import { App, Home, Login, Register, Wall, ImageWall, UploadWall } from 'containers';
+import { App, Home, Login, Register, Wall, ImageWall, UploadWall, ProfileWall } from 'containers';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -41,6 +41,7 @@ ReactDOM.render(
                 <Route exact path="/image/hashtags/:hashtags" component={ImageWall} />
                 <Route exact path="upload" component={UploadWall} />
                 <Route exact path="/upload/profile" component={UploadWall} />
+                <Route path="/profile" component={ProfileWall} />
             </Route>
         </Router>
     </Provider>, rootElement

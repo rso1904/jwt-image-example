@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     let image = new Image;
-
+    console.log(req.body.imageUrl.hashtags);
     image.img.data = req.body.imageUrl.imagePreviewUrl;
     image.img.contents = req.body.imageUrl.contents;
     image.img.writer = req.body.imageUrl.writer;
@@ -82,7 +82,6 @@ router.delete('/delete/:id', (req, res) => {
         });
     } */
 
-    // FIND MEMO AND CHECK FOR WRITER
     Image.findById(req.params.id, (err, image) => {
         if (err) throw err;
 

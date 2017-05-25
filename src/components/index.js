@@ -8,5 +8,6 @@ import Image from './Image';
 import ImageList from './ImageList';
 import Upload from './Upload';
 import ProFileUpload from './ProFileUpload';
+import Profile from './Profile'
 
-export { Header, Authentication, Write, Memo, MemoList, Search, Image, ImageList, Upload, ProFileUpload };
+export { Header, Authentication, Write, Memo, MemoList, Search, Image, ImageList, Upload, ProFileUpload, Profile };

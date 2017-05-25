@@ -1,6 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+const Hashtags = ({onHashtags}) => {
+    const mapToComponents = (hashtags) => {
+        //console.log("후: " + hashtags);
+            return hashtags.map((hashtag, i) => {
+                return (
+                    <Link to={`/image/hashtags/${hashtag}`} className="hashtag">#{hashtag}</Link>
+                );
+            });
+        };
+
+    return (
+        <div>
+            {mapToComponents(onHashtags)}
+        </div>
+    );
+}
+
 class Image extends React.Component {
 
     constructor(props) {
@@ -16,14 +33,19 @@ class Image extends React.Component {
     }
 
     getHashtags(contents, isOn) {
-        let type = contents.split('#');
-        let hash;
-        if (type.length > 1)
-            hash = type[1];
+        let types = contents.split('#')
+        let text = types.splice(0, 1);
+        let hash = [];
+        
+        if (types.length > 0) {
+            types.forEach(function(type) {
+                hash.push(type);
+            }, this);
+        }
         if (isOn === true) {
             return hash;
         } else {
-            return type[0];
+            return text;
         }
     }
 
@@ -52,7 +74,7 @@ class Image extends React.Component {
         let contents = this.getHashtags(this.props.imageData.img.contents);
 
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} />);
+            $imagePreview = (<img width="650" src={imagePreviewUrl} />);
         }
 
         return (
@@ -71,7 +93,7 @@ class Image extends React.Component {
                                         {this.props.imageData.img.writer}
                                     </div>
                                 </Link>
-                                <p>{contents} {typeof hashtags !== "undefined" ? <Link to={`/image/hashtags/${hashtags}`} className="hashtags">#{hashtags}</Link> : undefined}</p>
+                                <p>{contents} {typeof hashtags !== "undefined" ? <Hashtags onHashtags={hashtags} /> : undefined}</p>
                             </div>
                             <div className="card-action">
                                 <a href="/upload"><i className="material-icons">present_to_all</i></a>

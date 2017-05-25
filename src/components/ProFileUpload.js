@@ -9,7 +9,9 @@ class ProFileUpload extends React.Component {
         this.state = {
             file: '',
             imagePreviewUrl: '',
-            username: this.props.currentUser
+            username: this.props.currentUser,
+            password: '',
+            email: ''
         };
         
         this.handleImageChange = this.handleImageChange.bind(this);
@@ -41,9 +43,15 @@ class ProFileUpload extends React.Component {
     }
 
      handleChange(e) {
-        this.setState({
-            contents: e.target.value
-        });
+         if (e.target.id === "password") {
+             this.setState({
+                 password: e.target.value
+             });
+         } else if (e.target.id === "email") {
+             this.setState({
+                 email: e.target.value
+             });
+         }
     }
 
     render() {
@@ -60,7 +68,7 @@ class ProFileUpload extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="file-field input-field">
                         <div className="btn">
-                            <span>File</span>
+                            <span>Profile picture</span>
                             <input type="file" onChange={this.handleImageChange} />
                         </div>
                         <div className="file-path-wrapper">
@@ -70,14 +78,18 @@ class ProFileUpload extends React.Component {
                      <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleSubmit}>Submit
                         <i className="material-icons right">send</i>
                     </button>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <textarea id="textarea1" 
-                                className="materialize-textarea" 
-                                onChange={this.handleChange}></textarea>
-                            <label htmlfor="textarea1">Textarea</label>
-                        </div>
-                    </div>
+                     <div className="row">
+                         <div className="input-field col s12">
+                             <input id="password" type="password" className="validate" onChange={this.handleChange}></input>
+                             <label for="password">Password</label>
+                         </div>
+                     </div>
+                     <div className="row">
+                         <div className="input-field col s12">
+                             <input id="email" type="email" className="validate" onChange={this.handleChange}></input>
+                             <label for="email">Email</label>
+                         </div>
+                     </div>
                 </form>
                 {$imagePreview}
             </div>

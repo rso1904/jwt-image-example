@@ -9,7 +9,8 @@ const Account = new Schema({
     username: String,
     password: String,
     created: { type: Date, default: Date.now },
-    image: String
+    image: String,
+    email: String
 });
 
 // generates hash

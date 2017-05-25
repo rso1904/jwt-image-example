@@ -47,7 +47,7 @@ class Search extends React.Component {
         // IF PRESSED ENTER, TRIGGER TO NAVIGATE TO THE FIRST USER SHOWN
         if (e.keyCode === 13) {
             if (this.props.usernames.length > 0) {
-                browserHistory.push('/wall/' + this.props.usernames[0].usernames);
+                browserHistory.push('/image/' + this.props.usernames[0].usernames);
                 this.handleClose();
             }
         }
@@ -55,11 +55,9 @@ class Search extends React.Component {
 
     render() {
         const mapDataToLinks = (data) => {
-            // IMPLEMENT: map data array to array of Link components
-            // create Links to '/wall/:username'
             return data.map((user, i) => {
                 return (
-                    <Link onClick={this.handleClose} to={`/wall/${user.username}`} key={i}>
+                    <Link onClick={this.handleClose} to={`/image/${user.username}`} key={i}>
                         {user.username}
                     </Link>
                 );

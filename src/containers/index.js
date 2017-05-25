@@ -5,5 +5,6 @@ import Register from './Register';
 import Wall from './Wall';
 import ImageWall from './ImageWall';
 import UploadWall from './UploadWall';
+import ProfileWall from './ProfileWall'
 
-export { App, Home, Login, Register, Wall, ImageWall, UploadWall };
+export { App, Home, Login, Register, Wall, ImageWall, UploadWall, ProfileWall };

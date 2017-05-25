@@ -21,14 +21,19 @@ class Upload extends React.Component {
     }
 
     getHashtags(contents, isOn) {
-        let type = contents.split('#');
-        let hash;
-        if (type.length > 1)
-            hash = type[1];
+        let types = contents.split('#')
+        let text = types.splice(0, 1);
+        let hash = [];
+        
+        if (types.length > 0) {
+            types.forEach(function(type) {
+                hash.push(type);
+            }, this);
+        }
         if (isOn === true) {
             return hash;
         } else {
-            return type[0];
+            return text;
         }
     }
 
@@ -57,7 +62,7 @@ class Upload extends React.Component {
 
      handleChange(e) {
         let hashtags = this.getHashtags(e.target.value, true);
-
+        
         this.setState({
             contents: e.target.value,
             hashtags: hashtags
