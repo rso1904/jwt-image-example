@@ -13,7 +13,7 @@ import config from '../config';
 const devPort = 4000;
 
 const app = express();
-const port = 8080;
+const port = 3000;
 
 app.use(morgan('dev'));
 //app.use(bodyParser.json());

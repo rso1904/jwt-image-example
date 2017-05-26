@@ -14,7 +14,7 @@ import {
 class Home extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props); /*
         this.handlePost = this.handlePost.bind(this);
 
         this.loadNewMemo = this.loadNewMemo.bind(this);
@@ -22,7 +22,7 @@ class Home extends React.Component {
 
         this.handleEdit = this.handleEdit.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
-        this.handleStar = this.handleStar.bind(this);
+        this.handleStar = this.handleStar.bind(this); */
 
         this.state = {
             loadingState: false,
@@ -32,7 +32,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         // LOAD NEW MEMO EVERY 5 SECONDS
-        const loadMemoLoop = () => {
+      /*  const loadMemoLoop = () => {
           this.loadNewMemo().then(
             () => {
               this.memoLoaderTimeoutId = setTimeout(loadMemoLoop, 5000)
@@ -66,8 +66,8 @@ class Home extends React.Component {
                     initiallyLoaded: true
                 });
             }
-        );
-
+        );*/
+        /*
         $(window).scroll(() => {
           // WHEN HEIGHT UNDER SCROLLBOTTOM IS LESS THEN 250
           if ($(document).height() - $(window).height() - $(window).scrollTop() < 250) {
@@ -84,7 +84,7 @@ class Home extends React.Component {
               });
             }
           }
-        });
+        }); */
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -96,7 +96,7 @@ class Home extends React.Component {
 
     componentWillUnmount() {
       // STOPS THE loadMemoLoop
-      clearTimeout(this.memoLoaderTimeoutId);
+  //    clearTimeout(this.memoLoaderTimeoutId);
 
       // REMOVE WINDOWS SCROLL LISTENER
       $(window).unbind();
@@ -105,7 +105,7 @@ class Home extends React.Component {
           initiallyLoaded: false
       });
     }
-
+/*
     loadNewMemo() {
       // CANCEL IF THERE IS A PENDING REQUEST
       if(this.props.listStatus === 'WAITING')
@@ -155,7 +155,7 @@ class Home extends React.Component {
                             3: NOT LOGGED IN
                             4: NO RESOURCE
                             5: PERMISSION FAILURE
-                    */
+                    */ /*
                     let errorMessage = [
                         'Something broke',
                         'Please write something',
@@ -198,7 +198,7 @@ class Home extends React.Component {
                         2: NOT LOGGED IN
                         3: NO RESOURCE
                         4: PERMISSION FAILURE
-                */
+                */ /*
                 let errorMessage = [
                     'Something broke',
                     'You are not logged in',
@@ -218,7 +218,7 @@ class Home extends React.Component {
         });
     }
 
-    /* POST MEMO */
+    /* POST MEMO */ /*
     handlePost(contents) {
         return this.props.memoPostRequest(contents, this.props.token).then(
             () => {
@@ -234,7 +234,7 @@ class Home extends React.Component {
                         ERROR CODES
                             1: NOT LOGGED IN
                             2: EMPTY CONTENTS
-                    */
+                    */ /*
                     let $toastContents;
                     switch (this.props.postStatus.error) {
                         case 1:
@@ -267,7 +267,7 @@ class Home extends React.Component {
                             1: INVALID ID
                             2: NOT LOGGED IN
                             3: NO RESOURCE
-                    */
+                    */ /*
                     let errorMessage = [
                         'Something broke',
                         'You are not logged in',
@@ -285,7 +285,7 @@ class Home extends React.Component {
                 }
             }
         );
-    }
+    } */
 
     render() {
         const write = (
@@ -350,7 +350,7 @@ const mapStateToProps = (state) => {
         token: state.authentication.login.token
     };
 };
-
+/*
 const mapDispatchToProps = (dispatch) => {
     return {
         memoPostRequest: (contents, token) => {
@@ -369,7 +369,7 @@ const mapDispatchToProps = (dispatch) => {
             return dispatch(memoStarRequest(id, index));
         }
     };
-};
+}; */
 
 Home.PropTypes = {
     username: React.PropTypes.string
@@ -379,4 +379,5 @@ Home.defaultProps = {
     username: undefined
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+//export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);
