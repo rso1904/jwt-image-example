@@ -6,6 +6,7 @@ class Memo extends React.Component {
 
     constructor(props) {
         super(props);
+        /*
         this.state = {
             editMode: false,
             value: props.data.contents
@@ -13,9 +14,9 @@ class Memo extends React.Component {
         this.toggleEdit = this.toggleEdit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
-        this.handleStar = this.handleStar.bind(this);
+        this.handleStar = this.handleStar.bind(this); */
     }
-
+    /*
     toggleEdit() {
         if (this.state.editMode) {
             let id = this.props.data._id;
@@ -50,7 +51,7 @@ class Memo extends React.Component {
         this.setState({
             value: e.target.value
         });
-    }
+    } */
 
     render() {
         const { data, ownership } = this.props;
