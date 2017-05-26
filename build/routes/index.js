@@ -20,7 +20,7 @@ var _upload = require('./upload');
 
 var _upload2 = _interopRequireDefault(_upload);
 
-var _auth = require('../../middlewares/auth');
+var _auth = require('../middlewares/auth');
 
 var _auth2 = _interopRequireDefault(_auth);
 

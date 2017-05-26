@@ -184,4 +184,41 @@ router.get('/search', function (req, res) {
     res.json([]);
 });
 
+// update profile
+router.put('/update', function (req, res) {
+    // FIND THE USER BY USERNAME
+    _account2.default.findOne({ username: req.body.data.username }, function (err, account) {
+        if (err) throw err;
+        /*
+        if (typeof req.body.data.password !== "undefined")
+            account.password = account.generateHash(req.body.password);
+        */
+        if (typeof req.body.data.password !== "undefined") account.password = account.generateHash(req.body.data.password);
+        if (typeof req.body.data.email !== "undefined") account.email = req.body.data.email;
+        if (typeof req.body.data.imagePreviewUrl !== "undefined") account.image = req.body.data.imagePreviewUrl;
+
+        // SAVE IN THE DATABASE
+        account.save(function (err) {
+            if (err) throw err;
+            return res.json({ success: true });
+        });
+    });
+});
+
+router.get('/profile', function (req, res) {
+
+    _account2.default.findOne({ username: req.params.username }).exec(function (err, accounts) {
+        if (err) throw err;
+        res.json(accounts);
+    });
+});
+
+router.get('/profile/:username', function (req, res) {
+
+    _account2.default.findOne({ username: req.params.username }).exec(function (err, accounts) {
+        if (err) throw err;
+        res.json(accounts);
+    });
+});
+
 exports.default = router;

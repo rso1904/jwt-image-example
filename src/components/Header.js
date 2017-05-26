@@ -57,12 +57,12 @@ class Header extends React.Component {
             </li>
         )
 
-
+// <Link to="/" className="brand-logo center">AMPERSAND</Link>
         return (
             <div>
                 <nav>
                     <div className="nav-wrapper green darken-1">
-                        <Link to="/" className="brand-logo center">AMPERSAND</Link>
+                        
 
                         <ul>
                             <li><a onClick={this.toggleSearch}><i className="material-icons">search</i></a></li>

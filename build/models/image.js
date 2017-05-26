@@ -18,7 +18,8 @@ var Image = new Schema({
         contentType: String,
         convert: String,
         contents: String,
-        writer: String
+        writer: String,
+        hashtags: Array
     }
 });
 

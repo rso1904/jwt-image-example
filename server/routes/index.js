@@ -2,7 +2,7 @@ import express from 'express';
 import account from './account';
 import memo from './memo';
 import upload from './upload';
-import authMiddleware from '../../middlewares/auth';
+import authMiddleware from '../middlewares/auth';
 
 const router = express.Router();
 

@@ -13,7 +13,11 @@ import config from '../config';
 const devPort = 4000;
 
 const app = express();
-const port = 3000;
+const port = 8080;
+
+app.use(morgan('dev'));
+//app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 // mongodb connection
 const db = mongoose.connection;
@@ -28,9 +32,7 @@ app.use(session({
     saveUninitialized: true
 })); */
 
-app.use(morgan('dev'));
-//app.use(bodyParser.json());
-app.use(bodyParser.json({limit: '50mb'}));
+app.use('/', express.static(path.join(__dirname, './../public')));
 
 app.set('jwt-secret', config.secret)
 
@@ -47,13 +49,7 @@ app.use(function (err, req, res, next) {
     res.status(500).send('Something broke!');
 });
 
-app.use('/', express.static(path.join(__dirname, './../public')));
 
-
-
-app.get('/hello', (req, res) => {
-    return res.send('Hello Codelab');
-});
 
 app.listen(port, () => {
     console.log('Express is listening on port', port);

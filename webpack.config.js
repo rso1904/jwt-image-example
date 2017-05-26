@@ -1,12 +1,7 @@
-var webpack = require('webpack');
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
-
-    /* webpack-dev-server를 콘솔이 아닌 자바스크립트로 실행 할 땐, 
-    HotReloadingModule 를 사용하기 위해선 dev-server 클라이언트와 
-    핫 모듈을 따로 entry 에 넣어주어야 합니다. */
-
     entry: [
         'babel-polyfill',
         './src/index.js',
@@ -17,7 +12,6 @@ module.exports = {
         path: __dirname + '/public/',
         filename: 'bundle.js'
     },
-
 
     module: {
         loaders: [
@@ -40,16 +34,17 @@ module.exports = {
         root: path.resolve('./src')
     },
 
-    plugins: [
+    plugins:[
         new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
+          'process.env':{
+            'NODE_ENV': JSON.stringify('production')
+          }
         }),
         new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: true
-            }
+          compress:{
+            warnings: true
+          }
         })
     ]
+
 };

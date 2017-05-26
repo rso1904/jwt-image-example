@@ -48,7 +48,11 @@ var devPort = 4000; // HTTP REQUEST BODY
 
 
 var app = (0, _express2.default)();
-var port = 3000;
+var port = 8080;
+
+app.use((0, _morgan2.default)('dev'));
+//app.use(bodyParser.json());
+app.use(_bodyParser2.default.json({ limit: '50mb' }));
 
 // mongodb connection
 var db = _mongoose2.default.connection;
@@ -65,9 +69,7 @@ app.use(session({
     saveUninitialized: true
 })); */
 
-app.use((0, _morgan2.default)('dev'));
-//app.use(bodyParser.json());
-app.use(_bodyParser2.default.json({ limit: '50mb' }));
+app.use('/', _express2.default.static(_path2.default.join(__dirname, './../public')));
 
 app.set('jwt-secret', _config3.default.secret);
 
@@ -82,12 +84,6 @@ app.get('*', function (req, res) {
 app.use(function (err, req, res, next) {
     console.error(err.stack);
     res.status(500).send('Something broke!');
-});
-
-app.use('/', _express2.default.static(_path2.default.join(__dirname, './../public')));
-
-app.get('/hello', function (req, res) {
-    return res.send('Hello Codelab');
 });
 
 app.listen(port, function () {
