@@ -10,3 +10,4 @@
     npm run start
     
 # snapshot
+![ex_screenshot](./image/screenshot.jpg)
