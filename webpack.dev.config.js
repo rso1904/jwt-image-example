@@ -2,37 +2,28 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-
-    /* webpack-dev-server�� �ܼ��� �ƴ� �ڹٽ�ũ��Ʈ�� ���� �� ��, 
-    HotReloadingModule �� ����ϱ� ���ؼ� dev-server Ŭ���̾�Ʈ�� 
-    �� ����� ���� entry �� �־��־�� �մϴ�. */
-
     entry: [
         './src/index.js',
-        'webpack-dev-server/client?http://0.0.0.0:4000', // ���߼����� ��Ʈ�� �� �κп� �ԷµǾ�� ����� �۵��մϴ�
+        'webpack-dev-server/client?http://0.0.0.0:4000',
         'webpack/hot/only-dev-server',
         './src/style.css'
     ],
 
     output: {
-        path: '/', // public �� �ƴϰ� /, �̷��� �ϸ� ������ �޸𸮿� �����ϰ� ����մϴ�
+        path: '/', 
         filename: 'bundle.js'
     },
 
-    //���߼��� �����Դϴ�
     devServer: {
         hot: true,
         filename: 'bundle.js',
         publicPath: '/',
         historyApiFallback: true,
         contentsBase: './public',
-        /* ��� ��û�� ���Ͻ÷� ������ express�� ������ �޾ƿ���,
-        bundle ������ ��쿣 �켱���� ������ devserver�� ��ũ��Ʈ�� ����ϰ� �˴ϴ� */
         proxy: {
-            "**": "http://localhost:80" //express �����ּ�
+            "**": "http://localhost:80" 
         },
         stats: {
-            // �ܼ� �α׸� �ּ�ȭ�մϴ�.
             assets: false,
             colors: true,
             version: false,
