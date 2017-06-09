@@ -48,7 +48,7 @@ var devPort = 4000; // HTTP REQUEST BODY
 
 
 var app = (0, _express2.default)();
-var port = 8080;
+var port = 80;
 
 app.use((0, _morgan2.default)('dev'));
 //app.use(bodyParser.json());

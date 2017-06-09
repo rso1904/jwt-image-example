@@ -1,6 +1,5 @@
 import express from 'express';
 import account from './account';
-import memo from './memo';
 import upload from './upload';
 import authMiddleware from '../middlewares/auth';
 
@@ -12,10 +11,8 @@ router.use('/*', (req, res, next) => {
     next();
 });
 
-//router.use('/account', authMiddleware);
 router.use('/account', account);
-router.use('/memo', authMiddleware);
-router.use('/memo', memo);
+//router.use('/upload', authMiddleware);
 router.use('/upload', upload);
 
 export default router;

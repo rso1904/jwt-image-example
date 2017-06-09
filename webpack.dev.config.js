@@ -29,7 +29,7 @@ module.exports = {
         /* ��� ��û�� ���Ͻ÷� ������ express�� ������ �޾ƿ���,
         bundle ������ ��쿣 �켱���� ������ devserver�� ��ũ��Ʈ�� ����ϰ� �˴ϴ� */
         proxy: {
-            "**": "http://localhost:3000" //express �����ּ�
+            "**": "http://localhost:80" //express �����ּ�
         },
         stats: {
             // �ܼ� �α׸� �ּ�ȭ�մϴ�.

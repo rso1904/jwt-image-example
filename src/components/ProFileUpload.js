@@ -67,6 +67,7 @@ class ProFileUpload extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="file-field input-field">
+                        <div className="profileImg">{$imagePreview}</div>
                         <div className="btn">
                             <span>Profile picture</span>
                             <input type="file" onChange={this.handleImageChange} />
@@ -90,8 +91,7 @@ class ProFileUpload extends React.Component {
                              <label for="email">Email</label>
                          </div>
                      </div>
-                </form>
-                {$imagePreview}
+                </form>               
             </div>
         );
     }

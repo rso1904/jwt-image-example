@@ -66,7 +66,7 @@ router.get('/hashtags/:hashtags', (req, res) => {
 // DELETE IMAGE
 router.delete('/delete/:id', (req, res) => {
 
-    // CEHCK MEMO ID VALIDITY
+    // CEHCK ID VALIDITY
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
         return res.status(400).json({
             error: "INVALID ID",

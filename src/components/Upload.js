@@ -83,7 +83,7 @@ class Upload extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="file-field input-field">
                         <div className="btn">
-                            <span>File</span>
+                            <span>Image File</span>
                             <input type="file" onChange={this.handleImageChange} />
                         </div>
                         <div className="file-path-wrapper">
@@ -98,11 +98,11 @@ class Upload extends React.Component {
                             <textarea id="textarea1" 
                                 className="materialize-textarea" 
                                 onChange={this.handleChange}></textarea>
-                            <label htmlfor="textarea1">Textarea</label>
+                            <label htmlfor="textarea1">Contents</label>
                         </div>
                     </div>
                 </form>
-                {$imagePreview}
+                <div className="imgPreview"> {$imagePreview} </div>
             </div>
         );
     }
