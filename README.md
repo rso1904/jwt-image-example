@@ -1,13 +1,19 @@
 # jwt-image-example
 <li>Hello, It's image web such as instagram.</li>
 <li>I use react, redux, express, nodejs, mongodb. And image is saved to mongoDB.</li>
+<li>You could use this application on mobile, desktop</li>
 
 # Getting started
+First, you should clone this source
 
-    npm install
-    npm run clean
-    npm run build
-    npm run start
+    git clone https://github.com/rso1904/jwt-image-example
+
+After you finshed to clone your system, you should follow below instruction.
+
+    1. npm install
+    2. npm run clean
+    3. npm run build
+    4. npm run start
     
 # snapshot
 ![ex_screenshot](./image/screenshot.JPG)
