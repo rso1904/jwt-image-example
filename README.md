@@ -1,4 +1,4 @@
-# jwt-image-example
+# react-image-example
 <li>Hello, It's image web application such as instagram.</li>
 <li>I use react, redux, express, nodejs, mongodb. And images are saved to mongoDB.</li>
 <li>You could use this application on mobile, desktop</li>
